@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'This is the template to calculate area of shapes using lambda and API
+  gateway
+
+  '
+Globals:
+  Function:
+    Timeout: 20
+Resources:
+  ShapesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ShapesFunction
+      Handler: lambda.EntryPoint::handleRequest
+      FunctionName: Shapes
+      Runtime: java8
+      MemorySize: 512
+      Environment:
+        Variables:
+          PARAM1: VALUE
+Outputs:
+  ShapesFunction:
+    Description: Hello World Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - ShapesFunction
+      - Arn

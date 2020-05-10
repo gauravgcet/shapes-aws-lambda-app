@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/geometry/geometry.iml" filepath="$PROJECT_DIR$/geometry/geometry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shapes-aws-lambda-app.iml" filepath="$PROJECT_DIR$/shapes-aws-lambda-app.iml" />
+    </modules>
+  </component>
+</project>
