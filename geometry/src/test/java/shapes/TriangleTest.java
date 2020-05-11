@@ -1,26 +1,27 @@
 package shapes;
 
 import junit.framework.TestCase;
+import org.junit.Assert;
 import org.junit.Test;
 import utils.Constant;
 
-public class TriangleTest extends TestCase {
+public class TriangleTest {
 
     @Test
-    public void testArea() {
+    public void testGetArea() {
         Triangle triangle = new Triangle(10,10);
-        assertEquals(triangle.area(),50, 0.01);
+        Assert.assertEquals(triangle.getArea(), 50, 0.01);
     }
 
     @Test
-    public void testPerimeter() {
+    public void testGetPerimeter() {
         Triangle triangle = new Triangle(10,10);
-        assertEquals(triangle.perimeter(),0.0,0.01);
+        Assert.assertEquals(triangle.getPerimeter(), 0.0, 0.01);
     }
 
     @Test
-    public void testTestGetName() {
+    public void testGetName() {
         Triangle triangle = new Triangle(10,10);
-        assertEquals(triangle.getName(), Constant.SupportedShapes.TRIANGLE.name());
+        Assert.assertEquals(triangle.getName(), Constant.SupportedShapes.TRIANGLE.name());
     }
 }

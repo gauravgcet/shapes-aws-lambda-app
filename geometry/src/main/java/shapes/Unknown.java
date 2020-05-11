@@ -3,12 +3,12 @@ package shapes;
 public class Unknown implements Shape{
 
     @Override
-    public double area() {
+    public double getArea() {
         return 0;
     }
 
     @Override
-    public double perimeter() {
+    public double getPerimeter() {
         return 0;
     }
 

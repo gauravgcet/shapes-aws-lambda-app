@@ -1,6 +1,10 @@
 package lambda;
 
+import exception.ValidationException;
+import utils.Constant;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ShapeRequest {
@@ -21,5 +25,18 @@ public class ShapeRequest {
 
     public void setSides(List<Double> sides) {
         this.sides = sides;
+    }
+
+    public void validate() throws ValidationException {
+        if(shapeName==null || shapeName.trim().equals("")){
+            throw new ValidationException("shape name can be empty");
+        }else {
+            try
+            {
+                Constant.SupportedShapes.valueOf(shapeName);
+            }catch (Exception e) {
+                throw new ValidationException("shape name not supported");
+            }
+        }
     }
 }

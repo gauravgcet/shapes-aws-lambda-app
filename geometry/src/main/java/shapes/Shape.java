@@ -2,9 +2,9 @@ package shapes;
 
 public interface Shape {
 
-    public double area();
+    double getArea();
 
-    public double perimeter();
+    double getPerimeter();
 
-    public String getName();
+    String getName();
 }
