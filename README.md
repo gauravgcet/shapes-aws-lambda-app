@@ -1,21 +1,13 @@
-# AWS
+# Using Serverless application to compute the characteristics  of geometric shapes
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
-- HelloWorldFunction/src/main - Code for the application's Lambda function.
+- Geometry/src/main - Code for the application's Lambda function.
 - events - Invocation events that you can use to invoke the function.
-- HelloWorldFunction/src/test - Unit tests for the application code. 
+- Geometry/src/test - Unit tests for the application code. 
 - template.yaml - A template that defines the application's AWS resources.
 
 The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
-
-If you prefer to use an integrated development environment (IDE) to build and test your application, you can use the AWS Toolkit.  
-The AWS Toolkit is an open source plug-in for popular IDEs that uses the SAM CLI to build and deploy serverless applications on AWS. The AWS Toolkit also adds a simplified step-through debugging experience for Lambda function code. See the following links to get started.
-
-* [PyCharm](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
-* [IntelliJ](https://docs.aws.amazon.com/toolkit-for-jetbrains/latest/userguide/welcome.html)
-* [VS Code](https://docs.aws.amazon.com/toolkit-for-vscode/latest/userguide/welcome.html)
-* [Visual Studio](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/welcome.html)
 
 ## Deploy the sample application
 
@@ -53,14 +45,14 @@ Build your application with the `sam build` command.
 AWS$ sam build
 ```
 
-The SAM CLI installs dependencies defined in `HelloWorldFunction/pom.xml`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
+The SAM CLI installs dependencies defined in `geometry/pom.xml`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
 
 Test a single function by invoking it directly with a test event. An event is a JSON document that represents the input that the function receives from the event source. Test events are included in the `events` folder in this project.
 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-AWS$ sam local invoke HelloWorldFunction --event events/event.json
+AWS$ sam local invoke ShapesFunction --event events/event.json
 ```
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
@@ -77,8 +69,8 @@ The SAM CLI reads the application template to determine the API's routes and the
         HelloWorld:
           Type: Api
           Properties:
-            Path: /hello
-            Method: get
+            Path: /shapes/{name}
+            Method: TBD
 ```
 
 ## Add a resource to your application
@@ -91,18 +83,18 @@ To simplify troubleshooting, SAM CLI has a command called `sam logs`. `sam logs`
 `NOTE`: This command works for all AWS Lambda functions; not just the ones you deploy using SAM.
 
 ```bash
-AWS$ sam logs -n HelloWorldFunction --stack-name AWS --tail
+AWS$ sam logs -n ShapesFunction --stack-name Shapes --tail
 ```
 
 You can find more information and examples about filtering Lambda function logs in the [SAM CLI Documentation](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-logging.html).
 
 ## Unit tests
 
-Tests are defined in the `HelloWorldFunction/src/test` folder in this project.
+Tests are defined in the `geometry/src/test` folder in this project.
 
 ```bash
-AWS$ cd HelloWorldFunction
-HelloWorldFunction$ mvn test
+AWS$ cd geometry
+geometry$ mvn test
 ```
 
 ## Cleanup
@@ -110,11 +102,5 @@ HelloWorldFunction$ mvn test
 To delete the sample application that you created, use the AWS CLI. Assuming you used your project name for the stack name, you can run the following:
 
 ```bash
-aws cloudformation delete-stack --stack-name AWS
+aws cloudformation delete-stack --stack-name Shapes
 ```
-
-## Resources
-
-See the [AWS SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html) for an introduction to SAM specification, the SAM CLI, and serverless application concepts.
-
-Next, you can use AWS Serverless Application Repository to deploy ready to use Apps that go beyond hello world samples and learn how authors developed their applications: [AWS Serverless Application Repository main page](https://aws.amazon.com/serverless/serverlessrepo/)
