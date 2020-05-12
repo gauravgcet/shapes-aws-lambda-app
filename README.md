@@ -83,5 +83,5 @@ geometry$ mvn test
 ## Cleanup
 
 ```bash
-aws cloudformation delete-stack --stack-name Shapes
+aws cloudformation delete-stack --stack-name shapes
 ```
