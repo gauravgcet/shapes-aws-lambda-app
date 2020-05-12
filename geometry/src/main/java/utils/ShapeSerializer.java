@@ -4,10 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import shapes.Circle;
-import shapes.Rectangle;
-import shapes.Shape;
-import shapes.Square;
+import shapes.*;
 
 import java.lang.reflect.Type;
 
@@ -32,6 +29,11 @@ public class ShapeSerializer implements JsonSerializer<Shape> {
             root.add("area", jsonSerializationContext.serialize(((Rectangle)shape).getArea(), Double.class));
             root.add("perimeter", jsonSerializationContext.serialize(((Rectangle)shape).getPerimeter(), Double.class));
             root.add("shapeName", jsonSerializationContext.serialize(((Rectangle)shape).getName(), String.class));
+        }
+        if(shape instanceof Triangle){
+            root.add("area", jsonSerializationContext.serialize(((Triangle)shape).getArea(), Double.class));
+            root.add("perimeter", jsonSerializationContext.serialize(((Triangle)shape).getPerimeter(), Double.class));
+            root.add("shapeName", jsonSerializationContext.serialize(((Triangle)shape).getName(), String.class));
         }
         return root;
 

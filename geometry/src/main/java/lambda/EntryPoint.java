@@ -23,7 +23,7 @@ public class EntryPoint implements RequestHandler<GatewayRequest, GatewayRespons
 
         Gson gson = new GsonBuilder().registerTypeAdapter(Shape.class,new ShapeSerializer()).create();
 
-        String shapeName = gatewayRequest.getPathParameters().get("shapeName");
+        String shapeName = gatewayRequest.getPathParameters().get("shapeName").toUpperCase();
         List<String> sides = gatewayRequest.getMultiValueQueryStringParameters().get("side");
 
         ShapeRequest shapeRequest = new ShapeRequest(shapeName, Helper.parseDoubleList(sides));
