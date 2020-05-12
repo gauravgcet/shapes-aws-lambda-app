@@ -1,60 +1,40 @@
 package lambda;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import junit.framework.TestCase;
 
 import org.junit.Test;
-import utils.Constant;
+import java.util.Arrays;
+import java.util.Map;
 
-import java.util.ArrayList;
+
+import static org.junit.Assert.*;
 
 public class EntryPointTest {
 
-  @Test
-  public void successfulRectangleArea() {
-    EntryPoint app = new EntryPoint();
-    ShapeRequest shapeRequest = new ShapeRequest();
-    shapeRequest.setShapeName(Constant.SupportedShapes.RECTANGLE.name());
-    ArrayList<Double> sides = new ArrayList<Double>() {{
-      add(Double.parseDouble("10"));
-      add(Double.parseDouble("10"));
-    }};
-    shapeRequest.setSides(sides);
+    @Test
+    public void successfulRectangleArea() {
 
-   GatewayResponse gatewayResponse =  app.handleRequest(shapeRequest, null);
-   assertEquals(gatewayResponse.getShape().getArea(),100, 0.01);
-  }
+        EntryPoint app = new EntryPoint();
+        GatewayRequest gatewayRequest = new GatewayRequest();
 
-  @Test
-  public void successful404() {
-    EntryPoint app = new EntryPoint();
-    ShapeRequest shapeRequest = new ShapeRequest();
-    shapeRequest.setShapeName(null);
-    ArrayList<Double> sides = new ArrayList<Double>() {{
-      add(Double.parseDouble("10"));
-      add(Double.parseDouble("10"));
-    }};
-    shapeRequest.setSides(sides);
+        gatewayRequest.setPathParameters(Map.of("shapeName", "RECTANGLE"));
+        gatewayRequest.setMultiValueQueryStringParameters(Map.of("side", Arrays.asList("10","10")));
 
-    GatewayResponse gatewayResponse =  app.handleRequest(shapeRequest, null);
-    assertEquals(gatewayResponse.getStatusCode(),400);
-    assertEquals(gatewayResponse.getMessage(),"shape name can be empty");
-  }
+        GatewayResponse gatewayResponse =  app.handleRequest(gatewayRequest, null);
 
-  @Test
-  public void successful400UnsupportedShapes() {
-    EntryPoint app = new EntryPoint();
-    ShapeRequest shapeRequest = new ShapeRequest();
-    shapeRequest.setShapeName("abc");
-    ArrayList<Double> sides = new ArrayList<Double>() {{
-      add(Double.parseDouble("10"));
-      add(Double.parseDouble("10"));
-    }};
-    shapeRequest.setSides(sides);
+        assertEquals(gatewayResponse.getBody().contains("100"),true);
+    }
 
-    GatewayResponse gatewayResponse =  app.handleRequest(shapeRequest, null);
-    assertEquals(gatewayResponse.getStatusCode(),400);
-    assertEquals(gatewayResponse.getMessage(),"shape name not supported");
-  }
+    @Test
+    public void successful400UnsupportedShapes() {
+        EntryPoint app = new EntryPoint();
+        GatewayRequest gatewayRequest = new GatewayRequest();
+
+        gatewayRequest.setPathParameters(Map.of("shapeName", "abc"));
+        gatewayRequest.setMultiValueQueryStringParameters(Map.of("side", Arrays.asList("10","10")));
+
+        GatewayResponse gatewayResponse =  app.handleRequest(gatewayRequest, null);
+        assertEquals(gatewayResponse.getStatusCode(),500);
+        assertEquals(gatewayResponse.getBody(),"shape name not supported");
+    }
 }

@@ -1,9 +1,12 @@
 package shapes;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import utils.Constant;
 
 public class Square implements Shape {
 
+    @Expose(serialize = false)
     private final double width,length;
 
     public Square(double width, double length) {
@@ -25,4 +28,5 @@ public class Square implements Shape {
     public String getName() {
         return Constant.SupportedShapes.SQUARE.name();
     }
+
 }

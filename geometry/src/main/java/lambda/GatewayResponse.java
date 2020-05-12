@@ -11,29 +11,24 @@ import java.util.Map;
  */
 public class GatewayResponse {
 
-    private final Shape shape;
     private final Map<String, String> headers;
     private final int statusCode;
-    private final String message;
+    private final String body;
+    private boolean isBase64Encoded;
 
-
-    public GatewayResponse(final Shape shape, final Map<String, String> headers, final int statusCode,final String message) {
+    public GatewayResponse(Map<String, String> headers, int statusCode, String body, boolean isBase64Encoded) {
+        this.headers = headers;
         this.statusCode = statusCode;
-        this.shape = shape;
-        this.headers = Collections.unmodifiableMap(new HashMap<>(headers));
-        this.message = message;
-    }
-
-    public Shape getShape() {
-        return shape;
+        this.body = body;
+        this.isBase64Encoded = isBase64Encoded;
     }
 
     public Map<String, String> getHeaders() {
         return headers;
     }
 
-    public String getMessage() {
-        return message;
+    public String getBody() {
+        return body;
     }
 
     public int getStatusCode() {
@@ -43,10 +38,8 @@ public class GatewayResponse {
     @Override
     public String toString() {
         return "GatewayResponse{" +
-                "shape=" + shape +
                 ", headers=" + headers +
                 ", statusCode=" + statusCode +
-                ", message='" + message + '\'' +
                 '}';
     }
 }

@@ -6,25 +6,24 @@ import utils.Constant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class ShapeRequest {
 
-    private String shapeName;
-    private List<Double> sides;
+    private final String shapeName;
+    private final List<Double> sides;
+
+    public ShapeRequest(String shapeName, List<Double> sides) {
+        this.shapeName = shapeName;
+        this.sides = sides;
+    }
 
     public String getShapeName() {
         return shapeName;
     }
-    public void setShapeName(String shapeName) {
-        this.shapeName = shapeName;
-    }
 
     public List<Double> getSides() {
         return sides;
-    }
-
-    public void setSides(List<Double> sides) {
-        this.sides = sides;
     }
 
     public void validate() throws ValidationException {
