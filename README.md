@@ -1,4 +1,4 @@
-# Using Serverless application to compute the characteristics  of geometric shapes
+# Using Serverless application to compute the characteristics of geometric shapes
 
 This project contains source code and supporting files for a serverless application that you can deploy with the SAM CLI. It includes the following files and folders.
 
@@ -7,13 +7,11 @@ This project contains source code and supporting files for a serverless applicat
 - Geometry/src/test - Unit tests for the application code. 
 - template.yaml - A template that defines the application's AWS resources.
 
-The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project. You can update the template to add AWS resources through the same deployment process that updates your application code.
+The application uses several AWS resources, including Lambda functions and an API Gateway API. These resources are defined in the `template.yaml` file in this project.
 
 ## Deploy the sample application
 
-The Serverless Application Model Command Line Interface (SAM CLI) is an extension of the AWS CLI that adds functionality for building and testing Lambda applications. It uses Docker to run your functions in an Amazon Linux environment that matches Lambda. It can also emulate your application's build environment and API.
-
-To use the SAM CLI, you need the following tools.
+To deploy using the SAM CLI, you need the following tools.
 
 * SAM CLI
 * Java11
