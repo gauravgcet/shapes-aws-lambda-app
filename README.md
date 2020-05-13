@@ -31,7 +31,7 @@ You can find your API Gateway Endpoint URL in the output values displayed after 
 Build your application with the `sam build` command.
 
 ```bash
-AWS$ sam build
+$ sam build
 ```
 
 The SAM CLI installs dependencies defined in `geometry/pom.xml`, creates a deployment package, and saves it in the `.aws-sam/build` folder.
@@ -41,15 +41,17 @@ Test a single function by invoking it directly with a test event. An event is a 
 Run functions locally and invoke them with the `sam local invoke` command.
 
 ```bash
-AWS$ sam local invoke ShapesFunction --event events/event.json
+$ sam local invoke ShapesFunction --event events/circle-event.json
+$ sam local invoke ShapesFunction --event events/square-event.json
+
 ```
 
 The SAM CLI can also emulate your application's API. Use the `sam local start-api` to run the API locally on port 3000.
 
 ```bash
-AWS$ sam local start-api
-AWS$ curl http://localhost:3000/shapes/sqaure?side=10&side=10
-AWS$ curl http://localhost:3000/shapes/circle?side=10
+$ sam local start-api
+$ curl http://localhost:3000/shapes/sqaure?side=10&side=10
+$ curl http://localhost:3000/shapes/circle?side=10
 ```
 
 The SAM CLI reads the application template to determine the API's routes and the functions that they invoke. The `Events` property on each function's definition includes the route and method for each path.
@@ -66,7 +68,7 @@ The SAM CLI reads the application template to determine the API's routes and the
 ## Fetch, tail, and filter Lambda function logs
 
 ```bash
-AWS$ sam logs -n ShapesFunction --stack-name Shapes --tail
+$ sam logs -n ShapesFunction --stack-name Shapes --tail
 ```
 
 ## Unit tests
@@ -74,7 +76,7 @@ AWS$ sam logs -n ShapesFunction --stack-name Shapes --tail
 Tests are defined in the `geometry/src/test` folder in this project.
 
 ```bash
-AWS$ cd geometry
+$ cd geometry
 geometry$ mvn test
 ```
 
