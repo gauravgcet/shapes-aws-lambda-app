@@ -50,7 +50,7 @@ The SAM CLI can also emulate your application's API. Use the `sam local start-ap
 
 ```bash
 $ sam local start-api
-$ curl http://localhost:3000/shapes/sqaure?side=10&side=10
+$ curl http://localhost:3000/shapes/square?side=10&side=10
 $ curl http://localhost:3000/shapes/circle?side=10
 ```
 
